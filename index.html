@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <base target="_blank" />
+
+    <title>Link's WeHelp Application</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      html,
+      body {
+        width: 100%;
+        scroll-behavior: smooth !important;
+        font-family: "Noto Sans", sans-serif;
+      }
+      body {
+        background-image: linear-gradient(
+          0deg,
+          #eed7bc,
+          rgba(255, 235, 213, 0.788)
+        );
+      }
+
+      /* header */
+      .header {
+        width: 100%;
+        background-color: #ec8e30;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      /* header h3 */
+      .header h3 {
+        padding: 30px;
+        font-size: 2.5rem;
+        font-weight: bold;
+        position: relative;
+        z-index: 2;
+        border-right: 10px solid
+          rgba(197, 170, 106, 0.6);
+        text-align: center;
+        margin-right: 10px;
+        margin: auto;
+      }
+
+      .header h3::after {
+        content: "";
+        width: 100%;
+        height: 40px;
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        z-index: -1;
+        background-color: rgba(
+          223,
+          195,
+          120,
+          0.5
+        );
+      }
+
+      /* header nav */
+      .header nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        font-size: 0;
+      }
+
+      .header nav a {
+        text-align: center;
+        text-decoration: none;
+        padding: 10px;
+        font-size: 1.5rem;
+        color: #5c5144;
+        font-weight: 900;
+        border-top: 2px solid
+          rgba(44, 41, 38, 0.6);
+      }
+
+      .header nav a:hover {
+        color: white;
+      }
+
+      /* content */
+      .wrap {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .item {
+        width: 100%;
+        margin: 10px 0px;
+        padding: 20px 20px;
+        height: 400px;
+        border: 2px dotted black;
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+
+        /* no effect for outer scroll*/
+        overscroll-behavior: contain;
+      }
+
+      .item > h3 {
+        width: 100%;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 10px;
+        color: #f3bab0;
+        font-weight: bold;
+        /* border-bottom: 5px double #c94e38; */
+        position: relative;
+      }
+
+      /* dynamic effect for each item */
+      .item > h3::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        right: 50%;
+        transition: 0.5s;
+        border-bottom: 5px double #e4391b;
+      }
+      .item:hover > h3::after {
+        left: 0;
+        right: 0;
+      }
+
+      .item > p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: white;
+      }
+
+      /* link */
+      .item > p a {
+        text-decoration: none;
+        color: rgba(231, 241, 90, 0.774);
+        font-weight: 500;
+      }
+      .item > p a:hover {
+        text-decoration: underline;
+        font-weight: 600;
+      }
+
+      .item h3 + p::first-letter {
+        font-size: 2rem;
+      }
+      .item p + p {
+        padding: 5px 0;
+      }
+
+      /* footer */
+      .footer {
+        background-color: #694f2d98;
+        color: rgba(255, 255, 255, 0.808);
+        text-align: center;
+        margin-top: 10px;
+        padding: 20px 0;
+      }
+
+      /* RWD */
+      @media screen and (min-width: 985px) {
+        .header {
+          flex-wrap: nowrap;
+          padding-right: 50px;
+        }
+        .header h3 {
+          font-size: 1.8rem;
+          /*           margin-right: 30px; */
+        }
+        .header nav {
+          flex-direction: row;
+          margin-left: auto;
+          justify-content: center;
+        }
+        .header nav a {
+          border-top: 0px;
+          font-size: 1.2rem;
+          padding: 10px;
+          border-bottom: 5px double
+            rgb(187, 140, 11);
+          border-top: 5px double rgb(187, 140, 11);
+          box-sizing: border-box;
+        }
+        .item {
+          width: 70%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <h3>Application for WeHelp Bootcamp</h3>
+      <nav>
+        <a href="#profile" target="_self"
+          >個人簡介</a
+        >
+        <a href="#effort" target="_self"
+          >所做努力</a
+        >
+        <a href="#time" target="_self"
+          >時間安排</a
+        >
+        <a href="#company" target="_self"
+          >想加入公司</a
+        >
+        <a href="#obstacle" target="_self"
+          >困境</a
+        >
+        <a href="#thought" target="_self"
+          >開發心得</a
+        >
+        <a href="#other" target="_self">其他</a>
+      </nav>
+    </div>
+
+    <div class="wrap">
+      <div class="item" id="profile">
+        <h3>200字內個人簡介</h3>
+        <p>
+          您好，我是許修豪，目前任職於華泰商業銀行，過去曾於公職服務(財政部等機關)，畢業於政治大學經濟學研究所。
+        </p>
+        <p>
+          對於自動化及程式開發興趣的萌芽，源於Hahow「Python打造小資族選股策略」線上課程，其中透過程式加速投資策略及各種績效報表的產生，以及碩士研究過程中接觸過「網絡理論」，可以使用R或Python進行理論模型的分析與實踐，也因此對於「程式設計開發」一詞有很多的好奇與想像。後來直到下定決心離開公職後，持續探索自己真正興趣，因為投資進入美股市場，由美股進而了解科技軟體SaaS公司，微軟、Shopify、CloudFlare等，對於用科技改善生產力的進程深深著迷，且碩士論文從無到有使用數學建立經濟模型和數據實證等過程，期間在指導教授協助下獲國際期刊發表2篇論文，對創作成品獲得的成就感仍難以忘懷。[個人碩士論文期刊發表作品連結:
+          <a
+            href="https://link.springer.com/article/10.1057/s41288-020-00175-6"
+          >
+            1
+          </a>
+          和
+          <a
+            href="https://www.researchgate.net/publication/359337120_The_Effects_of_Microinsurance_on_the_Insurance_Market_A_Theoretical_Analysis"
+          >
+            2 </a
+          >]
+        </p>
+        <p>
+          為了實踐轉換跑道所做的努力，請參閱<a
+            href="#effort"
+            target="_self"
+            class="linkToPresentPage"
+            >「為了成為軟體工程師，曾做過什麼努力」</a
+          >，雖然已經進入職場一陣子，但既然都有勇氣離開公職鐵飯碗，就希望自己能磨練技術持續成長，也希望能夠加入WeHelp
+          Camp，參與開發流程，在學習與實踐並行下完成自己的作品。
+        </p>
+      </div>
+      <div class="item" id="effort">
+        <h3>
+          為了成為軟體工程師，曾做過什麼努力?若有具體專案作品請分享給我們
+        </h3>
+        <p>
+          對於程式開發從好奇到實踐(全力自學半年多)，起初是從李弘毅及陳縕儂台大教授線上課程(「機器學習」和「演算法設計與分析」)，了解原來AI是什麼以及演算法為何重要，此時對前後端、資料工程差別還沒有概念，而最先遇到的問題就是技術領域範圍太大，不知從何下手，工作之餘先後透過Udemy線上課程(關於網頁開發、資料結構及演算法、React)，為解答學習過程各種疑惑，也爬梳IT邦鐵人賽許多技術文章等資源，從一開始的文字天書到逐漸能夠欣賞其中design
+          pattern的發想，例如：CssCoke課程排版方法的背後思考邏輯、或React中Functional
+          Scope之下單向資料流開發概念等，但因在職時間有限，利用假日、通勤或零碎時間學習的方式多以閱讀為主(目前也使用心智圖整理學習內容，形塑知識框架)，但欠缺實戰實作經驗，在聽過招生說明會後更確定貴Camp訓練方式類似實習模式，採取提供媒介(工具)訓練自主學習及獨立運作，相信能加速補足要轉職所欠缺的相關條件。
+        </p>
+        <p>
+          雖缺乏自己獨立完成作品，但附上照著Udemy線上課程操作完成練習的成品<a
+            href="https://link-hsu.github.io/todolist/index.html"
+            >Todo List</a
+          >提供參考。
+        </p>
+      </div>
+      <div class="item" id="time">
+        <h3>如果參與這個計劃，會怎麼安排時間</h3>
+        <p>
+          目前雖在職，有計畫要離職全心投入程式開發學習，加入貴Camp(實體)及另外有在和科技新創企業談實習。
+        </p>
+      </div>
+      <div class="item" id="company">
+        <h3>
+          是否有想要加入的軟體公司?為什麼想加入該公司?
+        </h3>
+        <p>
+          由於目前對軟體資訊業界實際情況的了解仍不夠充足，對於要往前端、後端或特定領域還未有確定方向，自學過程在前端技術蒐集整理較多資源，有較多琢磨(如:React框架使用)，但多方了解後認為後端在市場需求方面較穩定，以及在深度發展上較具有優勢，考量長期發展性較偏好往後端走，但目前仍抱持開放態度，打算透過Camp實作及老師分享，對產業更深入了解後決定方向。
+        </p>
+      </div>
+      <div class="item" id="obstacle">
+        <h3>
+          請描述一件你曾經碰到最困難的事情，如何克服?
+        </h3>
+        <p>
+          在學習程式開發過程，會一直不斷遇到問題，由網路資源解答是家常便飯，但技術文章往往假設閱讀者有一定基礎，所以可能為了瞭解文章內容又需尋找更多資料解答，因為不知如何篩選出自己要的資訊而花費很多時間，直到廣泛閱讀技術文章加上使用Notion和心智圖等工具歸納整理，才慢慢進入狀況。另外資訊領域科技發展快速，和其他學門不同的是，每天都有新技術，如果一開始想把所有基礎都打好，可能現代科技早就跑遠追不上車尾燈，針對這問題認同陳縕儂教授於專訪中提到的建議，可以先到前頭看看業界想發展的領域技術，先完成過程中會使用到的技能樹，當接觸更廣泛之後，許多基本能力會重複使用，實戰經驗愈豐富基礎就會更深厚，並嘗試調整學習步伐不過度拘泥於基礎。
+        </p>
+      </div>
+      <div class="item" id="thought">
+        <h3>
+          關於這份申請網頁，請分享一個你開發時的技術心得?
+        </h3>
+        <p>
+          這份申請網頁在排版框架、間距和字體等花比較多時間，想要提升良好閱讀感受，其中在桌機size下排版header時，曾因為沒有搞清楚inline或block在排版空間上差異，會影響在置中時需要使用text-align或margin:
+          auto，學習到如何因應element規劃外圍框架；另外使用position
+          absolute結合transform在hover時做出一些動態效果，發現absolute實務中實用性很高。
+        </p>
+      </div>
+      <div class="item" id="other">
+        <h3>其他想要對我們說的事情</h3>
+        <p>
+          過去一年持續努力想轉往程式領域發展，雖離開公職先到本科之金融業，也仍未澆熄由商跨轉軟體工程之念頭，並且利用工作之餘全心學習，另外比較過坊間相關課程，及網路意見側面了解，除了所需技術外，認為貴Camp訓練方式較能訓練工程師核心軟性能力，希望能夠獲得參與一同學習機會!
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">&copy;copyright Link</div>
+  </body>
+</html>
