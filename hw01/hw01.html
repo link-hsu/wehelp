@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>hw01</title>
+    <style>
+      /* css reset */
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      body {
+        width: 100vw;
+      }
+
+      /* font basic setting */
+      h3 {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      p {
+        font-size: 20px;
+      }
+
+      /* hamburger menu */
+      /* checkbox */
+      #navControl {
+        position: absolute;
+        z-index: -2;
+        opacity: 0;
+      }
+      .header {
+        height: 50px;
+        padding: 0 10px;
+        background-color: #ccc;
+        position: relative;
+      }
+      .header > .logo {
+        line-height: 50px;
+      }
+
+      /* nav bar is hidden left */
+      .header > nav {
+        width: 80%;
+        height: calc(100vh - 50px);
+        background-color: #615f5b;
+        position: absolute;
+        top: 50px;
+        left: -100%;
+        transition: 0.5s;
+      }
+      .header > nav a {
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        padding: 20px 30px;
+        border-bottom: 1px solid #fff;
+      }
+
+      /* side bar appear when clicking the botton */
+      #navControl:checked ~ .header nav {
+        left: 0;
+      }
+      .menuBtn {
+        width: 50px;
+        height: 40px;
+        background-color: #053244;
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 20px;
+      }
+      .menuBtn span {
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+        display: block;
+        overflow: hidden;
+      }
+      /* hamgurger icon */
+      .menuBtn::before {
+        content: "";
+        position: absolute;
+        height: 3px;
+        left: 5px;
+        width: 40px;
+        background-color: #ccc;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        box-shadow: 0px 8px 0px #ccc,
+          0px -8px 0px #ccc;
+      }
+      /* full width */
+      .banner {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightblue;
+        height: 250px;
+        margin-bottom: 20px;
+      }
+      .about {
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+      }
+
+      .item {
+        width: 100%;
+        margin: 1%;
+        background-color: lightblue;
+        box-sizing: border-box;
+      }
+      .promotion {
+        display: flex;
+        align-items: center;
+      }
+      .promotion .small {
+        width: 20%;
+      }
+      .promotion p {
+        width: 80%;
+        padding: 0 10px;
+      }
+      .table .large {
+        width: 100%;
+      }
+      .table p {
+        margin: auto;
+        line-height: 50px;
+        text-align: center;
+      }
+      /* ipad screen */
+      @media screen and (min-width: 600px) {
+        /* hide hamburger */
+        .menuBtn {
+          display: none;
+        }
+
+        .header {
+          display: flex;
+        }
+        .header nav {
+          display: flex;
+          position: relative;
+          left: 0;
+          /* reset setting */
+          top: 0;
+          width: auto;
+          height: auto;
+          margin-left: auto;
+          background-color: transparent;
+          transition: 0s;
+        }
+        .header nav a {
+          padding: 0 20px;
+          line-height: 50px;
+          border: none;
+          color: black;
+          font-weight: bold;
+        }
+
+        .img.small {
+          width: 80px;
+          height: 50px;
+          display: inline-block;
+        }
+
+        .about > .promotion:not(:nth-child(3)) {
+          width: 48%;
+        }
+        .about > .table {
+          width: 23%;
+        }
+      }
+      /* desktop screen */
+      @media screen and (min-width: 1200px) and (max-width: 1920px) {
+        .about {
+          width: 1200px;
+          gap: 20px;
+          box-sizing: border-box;
+          padding: 10px;
+        }
+        .item {
+          margin: 0;
+        }
+        .about > .promotion {
+          width: 380px;
+        }
+        .about > .promotion:not(:nth-child(3)) {
+          width: 380px;
+        }
+        .about > .table {
+          width: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="checkbox"
+      name=""
+      id="navControl"
+    />
+    <div class="header">
+      <div class="logo"><p>My website</p></div>
+      <label for="navControl" class="menuBtn">
+        <span>menu</span>
+      </label>
+      <nav>
+        <a href="#">Item 1</a>
+        <a href="#">Item 2</a>
+        <a href="#">Item 3</a>
+        <a href="#">Item 4</a>
+      </nav>
+    </div>
+    <div class="banner">
+      <h3>Welcome to MyHome</h3>
+    </div>
+    <div class="about">
+      <div class="item promotion">
+        <img
+          src="https://picsum.photos/300/200?random=1"
+          alt="fakeImg"
+          class="img small"
+        />
+        <p>Promotion 1</p>
+      </div>
+      <div class="item promotion">
+        <img
+          src="https://picsum.photos/300/200?random=1"
+          alt="fakeImg"
+          class="img small"
+        />
+        <p>Promotion 2</p>
+      </div>
+      <div class="item promotion">
+        <img
+          src="https://picsum.photos/300/200?random=1"
+          alt="fakeImg"
+          class="img small"
+        />
+        <p>Promotion 3</p>
+      </div>
+
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 1</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+
+        <p>Table 2</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 3</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 4</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 5</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 6</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 7</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 8</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 9</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 10</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 11</p>
+      </div>
+      <div class="item table">
+        <div class="img">
+          <img
+            src="https://picsum.photos/300/200?random=2"
+            alt="fakeImg"
+            class="img large"
+          />
+        </div>
+        <p>Table 12</p>
+      </div>
+    </div>
+  </body>
+</html>
