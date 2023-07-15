@@ -1,6 +1,6 @@
 import re
 
-# Task 1
+print("Task 1 ===================================")
 
 
 def find_and_print(messages):
@@ -44,7 +44,7 @@ find_and_print({
 })
 
 
-# Task 2
+print("Task 2 ===================================")
 def calculate_sum_of_bonus(data):
     # Performance for all are salary*baseBonusRate 0.2
     # BonusRate gaps are different:
@@ -117,7 +117,7 @@ calculate_sum_of_bonus({
 })
 
 
-# Task 3
+print("Task 3 ===================================")
 def func(*data):
     charCount = {}
     found = False
@@ -144,7 +144,7 @@ func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花")  # print �
 func("郭宣雅", "林靜宜", "郭宣恆", "林靜花")  # print 沒有
 
 
-# Task 4
+print("Task 4 ===================================")
 
 def get_number(index):
     if index == 0:
@@ -164,7 +164,7 @@ get_number(5)  # print 10
 get_number(10)  # print 15
 
 # Task 4 for recursion不熟，練習
-
+print("Task 4-2 ===================================")
 
 def get_numberRec(index):
     if index == 0:
@@ -186,3 +186,26 @@ def get_numberRec(index):
 print(get_numberRec(1))  # print 4
 print(get_numberRec(5))  # print 10
 print(get_numberRec(10))  # print 15
+
+
+print("Task 5 ===================================")
+
+def find_index_of_car(seats, status, number): 
+    countAvail = {}
+    for i in range(len(status)):
+        if status[i] == 1 and seats[i] >= number:
+            countAvail[i] = seats[i] - number
+    if not countAvail:
+        print(-1)
+        return
+    else: 
+        minAvail = min(countAvail.values())
+        for key, value in countAvail.items():
+            if value == minAvail:
+                print(key)
+    
+
+find_index_of_car([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2)  # print 4 
+find_index_of_car([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4)  # print -1 
+find_index_of_car([4, 6, 5, 8], [0, 1, 1, 1], 4)  #  print 2 
+ 

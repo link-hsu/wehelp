@@ -1,4 +1,4 @@
-//  Task 1
+console.log("Task 1 ===================================");
 function findAndPrint(messages) {
   //  Messages can be divided into 2 parts:
   //  1. expressing real number form within string, which need to change into number form to check whether is larger than 17
@@ -55,7 +55,7 @@ findAndPrint({
   Jenny: "Good morning.",
 });
 
-// Task 2
+console.log("Task 2 ===================================");
 function calculate_sum_of_bonus(data) {
   // Performance for all are salary*baseBonusRate 0.2
   // BonusRate gaps are different:
@@ -157,7 +157,7 @@ calculate_sum_of_bonus({
   ],
 });
 
-//Task 3
+console.log("Task 3 ===================================");
 function func(...data) {
   let charCount = {};
   let found = false;
@@ -191,7 +191,7 @@ func("彭大牆", "王明雅", "吳明"); // print：彭大牆
 func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花"); // print：林花花
 func("郭宣雅", "林靜宜", "郭宣恆", "林靜花"); // print：沒有
 
-//Task 4
+console.log("Task 4 ===================================");
 
 function get_number(index) {
   let count = 0;
@@ -215,6 +215,7 @@ get_number(5); // print 10
 get_number(10); // print 15
 
 //Task 4 - for recursion exercise
+console.log("Task 4-2 ===================================");
 
 function get_numberRec(index) {
   let count = 0;
@@ -240,3 +241,30 @@ function get_numberRec(index) {
 console.log(get_numberRec(1)); // print 4
 console.log(get_numberRec(5)); // print 10
 console.log(get_numberRec(10)); // print 15
+
+console.log("Task 5 ===================================");
+
+function findIndexOfCar(seats, status, number) {
+  let countAvail = {};
+  for (let i = 0; i < status.length; i++) {
+    if (status[i] === 1 && seats[i] >= number) {
+      countAvail[i] = seats[i] - number;
+    }
+  }
+  if (Object.keys(countAvail).length === 0) {
+    console.log(-1);
+    return;
+  } else {
+    const values = Object.values(countAvail);
+    let minAvail = Math.min(...values);
+    for (let [key, value] of Object.entries(countAvail)) {
+      if (value === minAvail) {
+        console.log(key);
+      }
+    }
+  }
+}
+
+findIndexOfCar([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2); // print 4
+findIndexOfCar([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4); // print -1
+findIndexOfCar([4, 6, 5, 8], [0, 1, 1, 1], 4); //  print 2
