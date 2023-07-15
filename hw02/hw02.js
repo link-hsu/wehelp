@@ -78,11 +78,11 @@ function calculate_sum_of_bonus(data) {
     }
 
     // baseBonusRate
-    let bonusRate = 0.2;
+    let bonusRate = 0.1;
     if (
       ["Engineer", "CEO", "Sales"].includes(employee.role)
     ) {
-      bonusRate = 0.2;
+      bonusRate = 0.1;
     }
 
     //perfermaces for engineer: level gap => 0.05

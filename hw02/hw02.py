@@ -62,11 +62,10 @@ def calculate_sum_of_bonus(data):
             else:
                 salary = int(salary.replace(",", ""))
 
-        bonusRate = 0.2
 
         # baseBonusRate
         if employee['role'] in ['Engineer', 'CEO', 'Sales']:
-            bonusRate = 0.2
+            bonusRate = 0.1
         # perfermaces for engineer: level gap => 0.05
         if employee['role'] == 'Engineer' and employee['performance'] == 'above average':
             bonusRate += 0.05
