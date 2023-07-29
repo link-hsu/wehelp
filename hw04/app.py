@@ -24,7 +24,7 @@ def signin():
 
     # check user_id and password is not null
     if not user_id or not password:
-        return redirect("/error?msg=請輸入帳號及密碼")
+        return redirect("/error?message=請輸入帳號及密碼")
         # return redirect(url_for("error", msg="請輸入帳號及密碼"))        
 
     # user_id and password test
@@ -32,7 +32,7 @@ def signin():
         session["user"] = user_id
         return redirect("/member")
     else:
-        return redirect("/error?msg=帳號或密碼錯誤")
+        return redirect("/error?message=帳號或密碼錯誤")
         # return redirect(url_for("error", msg="帳號或密碼錯誤"))
         
         
@@ -52,7 +52,7 @@ def signout():
 
 @app.route("/error")
 def error():
-    message = request.args.get("msg", "")
+    message = request.args.get("message", "")
     return render_template("error.html", message=message)
 
 @app.route("/square/<int:number>", methods=["POST"])
