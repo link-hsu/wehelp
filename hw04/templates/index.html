@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Home Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e9dfd8;
+      }
+      .signin {
+        width: 600px;
+        height: 600px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 5px solid #e9dcdc;
+      }
+      .form {
+        width: 400px;
+        color: #fff;
+        width: 100%;
+      }
+      h1 {
+        background-color: rgb(126, 179, 171);
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .formGroup {
+        margin: auto;
+      }
+      .form {
+        margin-bottom: 50px;
+      }
+      .group label + input {
+        margin: 0 10px;
+      }
+      .group > label,
+      .group > input {
+        font-size: 1.5rem;
+      }
+      #clause {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+      .form h2,
+      .group {
+        margin-bottom: 10px;
+      }
+
+      .title,
+      .group,
+      .btnGroup {
+        text-align: center;
+      }
+
+      .btnGroup button {
+        font-size: 20px;
+        border-radius: 5px;
+        border: none;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signin">
+      <h1 class="title">歡迎光臨，請輸入帳號密碼</h1>
+      <div class="formGroup">
+        <form
+          action="/signin"
+          class="form"
+          onsubmit="return clauseCheck()"
+          method="POST"
+        >
+          <h2 class="title">登入系統</h2>
+          <div class="group">
+            <label for="user">帳號</label
+            ><input type="text" id="user" name="user_id" />
+          </div>
+          <div class="group">
+            <label for="password">密碼</label
+            ><input
+              type="password"
+              id="password"
+              name="password"
+            />
+          </div>
+          <div class="group">
+            <label for="clause">同意條款</label
+            ><input type="checkbox" id="clause" />
+          </div>
+          <div class="btnGroup"><button>登入</button></div>
+        </form>
+        <form
+          action="/square"
+          class="form"
+          onsubmit="return checkInt()"
+          method="POST"
+        >
+          <h2 class="title">計算正整數的平方</h2>
+          <div class="group">
+            <label for="int">正整數</label
+            ><input
+              type="text"
+              id="int"
+              name="int"
+              required
+            />
+          </div>
+          <div class="btnGroup"><button>計算</button></div>
+        </form>
+      </div>
+    </div>
+    <script>
+      function clauseCheck() {
+        const clause = document.getElementById("clause");
+        if (!clause.checked) {
+          alert("Please check the checkbox first");
+          return false;
+        }
+        return true;
+      }
+      function checkInt() {
+        const input = document.getElementById("int").value;
+        const regex = /^\d+$/;
+        if (!regex.test(input)) {
+          alert("Please enter a positive number");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
+</html>
