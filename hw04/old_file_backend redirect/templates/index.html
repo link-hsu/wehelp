@@ -111,7 +111,6 @@
           class="form"
           onsubmit="return checkInt()"
           method="POST"
-          id="squareRoute"
         >
           <h2 class="title">計算正整數的平方</h2>
           <div class="group">
@@ -143,11 +142,6 @@
           alert("Please enter a positive number");
           return false;
         }
-
-        const squareRoute = "/square/" + input;
-        document.getElementById("squareRoute").action =
-          squareRoute;
-
         return true;
       }
     </script>

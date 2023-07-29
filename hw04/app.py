@@ -1,11 +1,6 @@
-# initialize connect to database
-import pymongo
-client = pymongo.MongoClient("mongodb+srv://root:root123@mycluster.j5em5lg.mongodb.net/")
-db = client.memberSystem
-print("database successfully connected")
-
 # initialize flask
 from flask import *
+
 app = Flask(
     __name__,
     static_folder="public",
@@ -18,11 +13,6 @@ app.secret_key="this is my secret"
 # root
 @app.route("/")
 def index():
-    collection = db.user
-    collection.insert_one({
-        "user_id": "test",
-        "password": "test"
-    })
     return render_template("index.html")
 
 
@@ -34,22 +24,18 @@ def signin():
 
     # check user_id and password is not null
     if not user_id or not password:
-        return redirect("/error?msg=Please enter username and password")
+        return redirect("/error?msg=請輸入帳號及密碼")
+        # return redirect(url_for("error", msg="請輸入帳號及密碼"))        
 
-    # user_id and password exist
-    collection = db.user
-    result = collection.find_one({
-        "$and":[
-        {"user_id": user_id},
-        {"password": password}]})
-    
-    # error user_id or password
-    if result == None:
-        return redirect("/error?msg=Username or password is not correct")
-    
-    # correct user_id and password
-    session["user"] = result["user_id"]
-    return redirect("/member")
+    # user_id and password test
+    if user_id == "test" and password == "test":
+        session["user"] = user_id
+        return redirect("/member")
+    else:
+        return redirect("/error?msg=帳號或密碼錯誤")
+        # return redirect(url_for("error", msg="帳號或密碼錯誤"))
+        
+        
 
 
 @app.route("/member")
@@ -66,19 +52,12 @@ def signout():
 
 @app.route("/error")
 def error():
-    message = request.args.get("msg", "帳號或密碼發生錯誤")
+    message = request.args.get("msg", "")
     return render_template("error.html", message=message)
 
-@app.route("/square", methods=["POST"])
-def square():
-    number = request.form["int"]
-    return redirect(f"/square/{number}")
-
-@app.route("/square/<number>")
-def squareResult(number):
-    number = int(number)
+@app.route("/square/<int:number>", methods=["POST"])
+def square(number):
     return render_template("square.html", number=number)
-
 
 # start server
 app.run(port=3000)
