@@ -22,9 +22,9 @@ app.secret_key = "this is my secret"
 
 # CREATE TABLE message (
 #     messageId BIGINT AUTO_INCREMENT PRIMARY KEY,
-#     username VARCHAR(255) NOT NULL,
+#     member_id VARCHAR(255) NOT NULL,
 #     content VARCHAR(255) NOT NULL,
-#     FOREIGN KEY (username) REFERENCES member(username)
+#     FOREIGN KEY (member_id) REFERENCES member(username)
 # );
 
 # connect model
@@ -82,7 +82,7 @@ def signin():
 def member():
     if "username" in session:
         cursor = con.cursor(dictionary = True)
-        cursor.execute("SELECT * FROM message INNER JOIN member ON message.username = member.username ORDER BY messageId")
+        cursor.execute("SELECT * FROM message INNER JOIN member ON message.member_id = member.username ORDER BY messageId")
         messages = cursor.fetchall()
         cursor.close()
         return render_template("member.html", name = session["name"] ,messages = messages)
@@ -93,7 +93,7 @@ def member():
 def createMessage():
     content = request.form["content"]
     cursor = con.cursor()
-    cursor.execute("INSERT INTO message (username, content) VALUES (%s, %s)",
+    cursor.execute("INSERT INTO message (member_id, content) VALUES (%s, %s)",
                    (session["username"], content))
     con.commit()
     cursor.close()
@@ -103,7 +103,7 @@ def createMessage():
 def deleteMessage():
     messageId = request.form["messageId"]
     cursor = con.cursor()
-    cursor.execute("DELETE FROM message WHERE messageId = %s AND username = %s",
+    cursor.execute("DELETE FROM message WHERE messageId = %s AND member_id = %s",
                    (messageId, session["username"]))
     con.commit()
     cursor.close()

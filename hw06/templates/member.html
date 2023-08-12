@@ -103,7 +103,7 @@
           {% for message in messages %}
           <li>
             <span>{{message.name}}: </span> <span>{{message.content}}</span>
-            {% if message.username == session.username %}
+            {% if message.member_id == session.username %}
             <form
               action="/deleteMessage"
               method="POST"
