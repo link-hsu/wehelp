@@ -113,7 +113,7 @@ def deleteMessage():
 @app.route("/signout")
 def signout():
     if "username" in session:
-        del session["username"]
+        session.clear()
     return redirect("/")
 
 @app.route("/error")
