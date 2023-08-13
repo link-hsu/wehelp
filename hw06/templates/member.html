@@ -103,14 +103,14 @@
           {% for message in messages %}
           <li>
             <span>{{message.name}}: </span> <span>{{message.content}}</span>
-            {% if message.member_id == session.username %}
+            {% if message.member_id == session.member_id %}
             <form
               action="/deleteMessage"
               method="POST"
               class="delete"
               onsubmit="return confirmDelete()"
             >
-              <input type="hidden" name="messageId" value="{{message.messageId}}" />
+              <input type="hidden" name="message_id" value="{{message.id}}" />
               <button class="delete">X</button>
             </form>
             {% endif %}
