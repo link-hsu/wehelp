@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e9dfd8;
+      }
+      .login {
+        width: 600px;
+        height: 600px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 5px solid #e9dcdc;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      h1 {
+        background-color: rgb(126, 179, 171);
+        width: 100%;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+      .formGroup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+      }
+      h2 {
+        color: white;
+        font-size: 2rem;
+      }
+      a {
+        font-size: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <h1 class="title">失敗頁面</h1>
+      <div class="formGroup">
+        <h2>{{ message }}</h2>
+        <br />
+        <a href="/">返回首頁</a>
+      </div>
+    </div>
+  </body>
+</html>

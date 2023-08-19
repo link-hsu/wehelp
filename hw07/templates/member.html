@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e9dfd8;
+      }
+      .login {
+        width: 600px;
+        min-height: 600px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 5px solid #e9dcdc;
+      }
+      h1 {
+        background-color: rgb(126, 179, 171);
+        width: 100%;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+      .formGroup {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      h2.success {
+        color: white;
+        font-size: 2rem;
+        margin: 30px 0 10px 0;
+      }
+      .signout > a {
+        text-decoration: underline;
+        font-size: 2rem;
+      }
+      .form {
+        margin: 30px 0;
+        color: #fff;
+        font-size: 20px;
+      }
+      h2.title {
+        text-align: center;
+      }
+      label {
+        margin-right: 10px;
+        font-size: 25px;
+      }
+      .btnGroup {
+        text-align: center;
+      }
+      .btnGroup button {
+        font-size: 20px;
+        border-radius: 5px;
+        border: none;
+        width: 100px;
+        margin: 20px 0;
+      }
+
+      .query_div,
+      .update_div {
+        color: white;
+        margin-top: 30px;
+        text-align: center;
+      }
+      .update_div {
+        margin-bottom: 30px;
+      }
+      .query_result,
+      .update_result {
+        color: rgb(247, 225, 32);
+        font-size: 1.5rem;
+      }
+      .query_result {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <h1 class="title">歡迎光臨，這是會員頁</h1>
+      <div class="formGroup">
+        <h2 class="success">{{name}}，歡迎登入系統</h2>
+        <div class="signout">
+          <a href="/signout">登出系統</a>
+        </div>
+        <div class="query_div">
+          <h2 class="title">查詢會員姓名</h2>
+          <div class="group">
+            <input type="text" id="query_username" name="username" required />
+          </div>
+          <div class="btnGroup"><button onclick="fetchQueryUsername()">查詢</button></div>
+          <div class="query_result">會員查詢結果</div>
+        </div>
+        <div class="update_div">
+          <h2 class="title">更新我的姓名</h2>
+          <div class="group">
+            <input type="text" id="update_name" name="update_name" required />
+          </div>
+          <div class="btnGroup">
+            <button onclick="updateName()">更新</button>
+          </div>
+          <div class="update_result"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function fetchQueryUsername() {
+        const query_username = document.getElementById("query_username").value;
+        fetch(`/api/member?username=${query_username}`)
+          .then((res) => res.json())
+          .then((data) => {
+            const result = document.querySelector(".query_result");
+            if (data.data) {
+              const member_info = data.data;
+              result.innerHTML = `<p>會員ID: ${member_info.id}</p><p>姓名: ${member_info.name}</p><p>會員帳號: ${member_info.username}</p>`;
+              result.style.visibility = "visible";
+            } else {
+              result.innerHTML = "<p>查無會員資料</p>";
+            }
+          })
+          .catch((e) => {
+            const result = document.querySelector(".query_result").value;
+            result.innerHTML = "<p>查詢失敗</p>";
+          });
+      }
+
+      function updateName() {
+        const update_name = document.getElementById("update_name").value;
+        const requestBody = { name: update_name };
+        fetch("/api/member", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const result = document.querySelector(".update_result");
+            if (data.ok) {
+              result.textContent = "更新成功";
+              document.querySelector(".success").textContent = `${update_name}，歡迎登入系統`;
+            } else {
+              result.textContent = "更新失敗";
+            }
+          })
+          .catch((e) => {
+            console.error("Error: ", e);
+          });
+      }
+    </script>
+  </body>
+</html>
